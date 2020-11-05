@@ -2,34 +2,31 @@ package gui;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.awt.Container;
-import java.awt.Graphics;
+
+import transforms.Move;
+
 import java.awt.BorderLayout;
+import java.awt.Graphics;
 import utils.Punto;
 
 public class Window extends JPanel {
-    JFrame window;
-    Container container;
-    Punto[] figure;
+    private final int WIDTH = 800, HEIGHT = 600;
+
+    private JFrame window;
+    public Punto[] figure;
 
     public Window(String titulo, Punto[] figure) {
         window = new JFrame("Dibujando icono");
         this.figure = figure;
-
-        configureWindow();
-        configureContainer();
+        Move.apply(figure, WIDTH / 2, HEIGHT / 2);
         configurePanel();
+        configureWindow();
     }
 
     private void configurePanel() {
-        this.add(new Menu(), BorderLayout.NORTH);
-        this.add(new Toolkit(), BorderLayout.WEST);
-    }
-
-    private void configureContainer() {
-        container = window.getContentPane();
-        container.setSize(800, 600);
-        container.add(this, BorderLayout.CENTER);
+        this.setLayout(new BorderLayout());
+        this.add(new Menu(this), BorderLayout.NORTH);
+        this.add(new ButtonBar(this), BorderLayout.WEST);
     }
 
     private void configureWindow() {
@@ -38,9 +35,24 @@ public class Window extends JPanel {
         window.setSize(800, 600);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setLocationRelativeTo(null);
+        window.add(this);
     }
 
     @Override
     protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        dibujar(g);
+    }
+
+    private void dibujar(Graphics g) {
+        for (int i = 0; i < figure.length - 1; i++) {
+            g.drawLine(
+                figure[i].getX(),
+                figure[i].getY(),
+                figure[i + 1].getX(),
+                figure[i + 1].getY()
+            );
+        }
     }
 }
