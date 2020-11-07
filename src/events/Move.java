@@ -16,10 +16,14 @@ public class Move implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-        transforms.Move.apply(w.figure,
+        try {
+            transforms.Move.apply(w.figure,
             Integer.parseInt(JOptionPane.showInputDialog("X")),
             Integer.parseInt(JOptionPane.showInputDialog("Y")));
 
-        w.repaint();
+            w.repaint();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Tipo de dato invalido", "Error", JOptionPane.ERROR_MESSAGE);
+        }
 	}
 }

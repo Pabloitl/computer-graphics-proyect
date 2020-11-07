@@ -22,11 +22,15 @@ public class Rotate implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent arg0) {
-        if (clockwise) {
-            RotateRight.apply(w.figure, Double.parseDouble(JOptionPane.showInputDialog("Degrees")));
-        } else {
-            RotateLeft.apply(w.figure, Double.parseDouble(JOptionPane.showInputDialog("Degrees")));
+        try {
+            if (clockwise) {
+                RotateRight.apply(w.figure, Double.parseDouble(JOptionPane.showInputDialog("Degrees")));
+            } else {
+                RotateLeft.apply(w.figure, Double.parseDouble(JOptionPane.showInputDialog("Degrees")));
+            }
+            w.repaint();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Tipo de dato invalido", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        w.repaint();
     }
 }

@@ -25,14 +25,18 @@ public class Mirror implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-        switch (axis) {
-            case X:
-                MirrorX.apply(w.figure);
-            case Y:
-                MirrorY.apply(w.figure);
-            case XY:
-                MirrorXY.apply(w.figure);
+        try {
+            switch (axis) {
+                case X:
+                    MirrorX.apply(w.figure);
+                case Y:
+                    MirrorY.apply(w.figure);
+                case XY:
+                    MirrorXY.apply(w.figure);
+            }
+            w.repaint();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Tipo de dato invalido", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        w.repaint();
 	}
 }

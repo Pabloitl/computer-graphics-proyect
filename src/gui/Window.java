@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import transforms.Move;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Graphics;
 import utils.Punto;
 
@@ -18,15 +19,21 @@ public class Window extends JPanel {
     public Window(String titulo, Punto[] figure) {
         window = new JFrame("Dibujando icono");
         this.figure = figure;
-        Move.apply(figure, WIDTH / 2, HEIGHT / 2);
+
+        configureFigure(figure);
         configurePanel();
         configureWindow();
     }
 
+    private void configureFigure(Punto[] figure) {
+        Move.apply(figure, WIDTH / 2, HEIGHT / 2);
+    }
+
     private void configurePanel() {
-        this.setLayout(new BorderLayout());
-        this.add(new Menu(this), BorderLayout.NORTH);
-        this.add(new ButtonBar(this), BorderLayout.WEST);
+        setLayout(new BorderLayout());
+        setBackground(Color.decode("#76d7c4"));
+        add(new Menu(this), BorderLayout.NORTH);
+        add(new ButtonBar(this), BorderLayout.WEST);
     }
 
     private void configureWindow() {

@@ -1,5 +1,6 @@
 package gui;
 
+import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -37,6 +38,7 @@ public class Menu extends JMenuBar {
         for (int i = 0; i < items.length; i++) {
             for (int j = 0; j < items[i].length; j++) {
                 items[i][j].addActionListener(EventFactory.getInstance(items[i][j].getText().replaceAll(" ", ""), w));
+                items[i][j].setIcon(new ImageIcon("assets/" + items[i][j].getText().replaceAll(" ", "").toLowerCase() + ".png"));
                 menus[i].add(items[i][j]);
             }
         }

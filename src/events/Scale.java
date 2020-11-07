@@ -16,10 +16,13 @@ public class Scale implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-        transforms.Scale.apply(w.figure,
-            Integer.parseInt(JOptionPane.showInputDialog("X")),
-            Integer.parseInt(JOptionPane.showInputDialog("Y")));
+        try {
+            transforms.Scale.apply(w.figure, Double.parseDouble(JOptionPane.showInputDialog("X")),
+                    Double.parseDouble(JOptionPane.showInputDialog("Y")));
 
-        w.repaint();
+            w.repaint();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Tipo de dato invalido", "Error", JOptionPane.ERROR_MESSAGE);
+        }
 	}
 }
