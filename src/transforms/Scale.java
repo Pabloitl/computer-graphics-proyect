@@ -1,5 +1,6 @@
 package transforms;
 
+import utils.Figure;
 import utils.Punto;
 
 /**
@@ -7,10 +8,10 @@ import utils.Punto;
  */
 public class Scale {
 
-    public static void apply(Punto[] figure, double x, double y) {
-        int tx = figure[0].getX(), ty = figure[0].getY();
+    public static void apply(Figure figure, double x, double y) {
+        int tx = figure.getPoints()[0].getX(), ty = figure.getPoints()[0].getY();
 
-        for (Punto punto : figure) {
+        for (Punto punto : figure.getPoints()) {
             punto.setX( (int) ((punto.getX() - tx) * x) + tx);
             punto.setY( (int) ((punto.getY() - ty) * y) + ty);
         }

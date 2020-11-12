@@ -1,5 +1,6 @@
 package transforms;
 
+import utils.Figure;
 import utils.Punto;
 
 /**
@@ -7,10 +8,10 @@ import utils.Punto;
  */
 public class MirrorXY {
 
-    public static void apply(Punto[] figure) {
-        int tx = figure[0].getX(), ty = figure[0].getY();
+    public static void apply(Figure figure) {
+        int tx = figure.getPoints()[0].getX(), ty = figure.getPoints()[0].getY();
 
-        for (Punto punto : figure) {
+        for (Punto punto : figure.getPoints()) {
             punto.setX(-(punto.getX() - tx) + tx);
             punto.setY(-(punto.getY() - ty) + ty);
         }

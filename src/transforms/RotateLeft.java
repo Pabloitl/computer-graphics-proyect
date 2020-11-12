@@ -1,5 +1,6 @@
 package transforms;
 
+import utils.Figure;
 import utils.Punto;
 
 /**
@@ -7,11 +8,11 @@ import utils.Punto;
  */
 public class RotateLeft {
 
-    public static void apply(Punto[] figure, double theta) {
-        int tx = figure[0].getX(), ty = figure[0].getY();
+    public static void apply(Figure figure, double theta) {
+        int tx = figure.getPoints()[0].getX(), ty = figure.getPoints()[0].getY();
 
         theta = Math.toRadians(theta);
-        for (Punto punto : figure) {
+        for (Punto punto : figure.getPoints()) {
             punto.setX((int) ((punto.getX() - tx) * Math.cos(theta) + (punto.getY() - ty) * Math.sin(theta) + tx));
             punto.setY((int) (-(punto.getX() - tx) * Math.sin(theta) + (punto.getY() - ty) * Math.cos(theta) + ty));
         }

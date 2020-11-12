@@ -13,6 +13,14 @@ public class Punto {
     }
 
     /**
+     * Copy constructor
+     */
+    public Punto(Punto p) {
+        x = p.getX();
+        y = p.getY();
+    }
+
+    /**
      * Generar un punto en las coordenadas (x,y)
      * @param x Coordenada en x del punto
      * @param y Coordenada en y del punto

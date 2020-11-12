@@ -10,19 +10,37 @@ import javax.swing.JOptionPane;
 public class Scale implements ActionListener {
     Window w;
 
+    boolean useDefault;
+    double x, y;
+
     public Scale(Window w) {
         this.w = w;
     }
 
+    public Scale(Window w, double x, double y) {
+        this.w = w;
+        this.useDefault = true;
+        this.x = x;
+        this.y = y;
+    }
+
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-        try {
-            transforms.Scale.apply(w.figure, Double.parseDouble(JOptionPane.showInputDialog("X")),
-                    Double.parseDouble(JOptionPane.showInputDialog("Y")));
+        if (useDefault) {
+            transforms.Scale.apply(w.figure, x, y);
+        } else {
+            askScale();
+        }
+        w.repaint();
+	}
 
-            w.repaint();
+    private void askScale() {
+        try {
+            transforms.Scale.apply(w.figure,
+                Double.parseDouble(JOptionPane.showInputDialog("X")),
+                Double.parseDouble(JOptionPane.showInputDialog("Y")));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Tipo de dato invalido", "Error", JOptionPane.ERROR_MESSAGE);
         }
-	}
+    }
 }

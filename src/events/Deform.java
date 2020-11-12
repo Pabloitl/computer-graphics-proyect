@@ -13,19 +13,37 @@ import javax.swing.JOptionPane;
 public class Deform implements ActionListener {
     Window w;
 
+    boolean useDefault;
+    double x, y;
+
     public Deform(Window w) {
         this.w = w;
     }
 
+    public Deform(Window w, double x, double y) {
+        this.w = w;
+        this.useDefault = true;
+        this.x = x;
+        this.y = y;
+    }
+
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-        try {
-            transforms.Deform.apply(w.figure, Integer.parseInt(JOptionPane.showInputDialog("X")),
-                    Integer.parseInt(JOptionPane.showInputDialog("Y")));
+        if (useDefault) {
+            transforms.Deform.apply(w.figure, x, y);
+        } else {
+            askDeform();
+        }
+        w.repaint();
+	}
 
-            w.repaint();
+    private void askDeform() {
+        try {
+            transforms.Deform.apply(w.figure,
+                Double.parseDouble(JOptionPane.showInputDialog("X")),
+                Double.parseDouble(JOptionPane.showInputDialog("Y")));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Tipo de dato invalido", "Error", JOptionPane.ERROR_MESSAGE);
         }
-	}
+    }
 }
