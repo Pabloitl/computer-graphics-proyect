@@ -33,7 +33,7 @@ public class ButtonBar extends JPanel {
 
         configurePanel(w);
         for (JButton jButton : buttons) {
-            jButton.setIcon(new ImageIcon("assets/" + jButton.getText() + ".png"));
+            jButton.setIcon(new ImageIcon("assets/" + jButton.getText().toLowerCase() + ".png"));
             jButton.addActionListener(EventFactory.getDefaultInstance(jButton.getText(), w));
             jButton.setText("");
             jButton.setBackground(Color.decode("#D7EEFF"));

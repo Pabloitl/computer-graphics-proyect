@@ -24,6 +24,7 @@ public class Menu extends JMenuBar {
         new JMenuItem[] {
             new JMenuItem("Scale"),
             new JMenuItem("Move"),
+            new JMenuItem("Deform"),
             new JMenuItem("Restore")
         },
         new JMenuItem[] {
